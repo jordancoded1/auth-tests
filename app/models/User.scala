@@ -8,13 +8,11 @@ case class User(user_id: Int,
                 username: String,
                 email : String,
                 password: String
-                 ) {
-  def check_password(password: String): Boolean = this.password == password
-}
+                 )
 
 object User
 {
-  //TEMP DATA SOURCE
+  //Temporary serves as user data source
   val users = List(
     User(1, "ricky", "ricky@abc.com", "password1"),
     User(2, "bobby", "bobby@abc.com", "password2"),
@@ -23,10 +21,6 @@ object User
     User(5, "steve", "steve@abc.com", "password5")
   )
 
-  def get_all = users
-
-  def get_by_username(username: String): Option[User] = {
-    users.filter(_.username == username).headOption
-  }
+  def find_all = users
+  def find_by_username_password(username: String, password: String): Option[User] = users.find((u: User) => u.username == username && u.password == password)
 }
-

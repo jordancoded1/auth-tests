@@ -1,4 +1,4 @@
-@(login_form: Form[UserLogin])
+@(login_form: Form[UserLogin])(implicit request: RequestHeader)
 @main("Login form") {
     @helper.form(action=routes.Users.authenticate) {
         @helper.inputText(login_form("username"))

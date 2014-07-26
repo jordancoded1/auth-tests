@@ -7,13 +7,10 @@ import models._
 
 object Users extends Controller
 {
-
-  def list = Action {
-    val users = User.get_all
-    Ok(users.toString())
+  def list = Action { implicit request =>
+    val users = User.find_all
+    Ok(views.html.list(users))
   }
-
-  // Login module - STARTS
 
   val login_form: Form[UserLogin] = Form(
     Forms.mapping(
@@ -24,38 +21,20 @@ object Users extends Controller
 
   def authenticate = Action { implicit request =>
     login_form.bindFromRequest.fold(
-      form_with_errors => {
-        Ok(views.html.login(form_with_errors))
-      },
-      form_data => {
-        val valid_user = User
-          .get_by_username(form_data.username)
-          .filter(_.check_password(form_data.password))
-
-        valid_user match {
-          case Some(valid_user) => {
-            /*
-            TODO: someway to store current user encrypted session in a cookie or somewhere
-            */
-
-            Ok(s"""Valid user:
-                User ID:  ${valid_user.user_id}
-                Username: ${valid_user.username}
-                Email:    ${valid_user.email}""")
-          }
-
-          case _ => {
-            Ok("Incorrect username OR password")
+        form_with_errors => {
+          Ok(views.html.login(form_with_errors))
+        },
+        form_data => {
+          val valid_user = User.find_by_username_password(form_data.username, form_data.password)
+          valid_user match {
+            case Some(u) => Ok(s"Valid user: ${u.username}").withSession(Session(Map("user" -> u.username)))
+            case _ => Ok("Incorrect username OR password")
           }
         }
-      }
     )
   }
 
-  def login = Action { request =>
+  def login = Action { implicit request =>
     Ok(views.html.login(login_form))
   }
-
-  // Login module - ENDS
-
 }
