@@ -35,7 +35,7 @@ object Users extends Controller
           form_data => {
             val valid_user = User.find_by_username_password(form_data.username, form_data.password)
             valid_user match {
-              case Some(u) => Ok(s"Valid user: ${u.username}").withSession(Session(Map("user" -> u.username)))
+              case Some(u) => Ok(s"Valid user: ${u.username.getOrElse("")}").withSession(Session(Map("user" -> u.username.getOrElse("") )))
               case _ => Ok("Incorrect username OR password")
             }
           }

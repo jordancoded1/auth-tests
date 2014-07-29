@@ -11,15 +11,16 @@ case class UserSignup(username: String,
                       confirm_password: String)
 
 case class User(id: Int,
-                created_at: String,
-                updated_at: String,
-                username: String,
-                email: String,
-                encrypted_password: String,
-                confirmation_token: String,
-                remember_token: String,
-                first_name: String,
-                last_name: String)
+                createdAt: Option[String],
+                updatedAt: Option[String],
+                username: Option[String],
+                email: Option[String],
+                encryptedPassword: Option[String],
+                confirmationToken: Option[String],
+                rememberToken: Option[String],
+                firstName: Option[String],
+                lastName: Option[String])
+
 
 object User extends UserData {
   def find_by_username_password(username: String, password: String): Option[User] = None /*users.find((u: User) => u.username == username && u.password == password)*/

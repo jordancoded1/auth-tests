@@ -1,19 +1,21 @@
 package models.data_source.Users
 
 import scala.slick.driver.MySQLDriver.simple._
+import models.User
 
-class UserTable(tag: Tag) extends Table[(Int, String, String, String, String, String, String, String, String, String)](tag, "users") {
-  def id = column[Int]("id", O.PrimaryKey)
-  def created_at = column[String]("created_at")
-  def updated_at = column[String]("updated_at")
-  def username = column[String]("username")
-  def email = column[String]("email")
-  def encrypted_password = column[String]("encrypted_password")
-  def confirmation_token = column[String]("confirmation_token")
-  def remember_token = column[String]("remember_token")
-  def first_name = column[String]("first_name")
-  def last_name = column[String]("last_name")
-  def * = (id, created_at, updated_at, username, email, encrypted_password, confirmation_token, remember_token, first_name, last_name)
+class UserTable(tag: Tag) extends Table[(Int, Option[String], Option[String], Option[String], Option[String], Option[String], Option[String], Option[String], Option[String], Option[String])](tag, "users") {
+  def id                = column[Int]("id", O.PrimaryKey)
+  def createdAt         = column[Option[String]]("created_at")
+  def updatedAt         = column[Option[String]]("updated_at")
+  def username          = column[Option[String]]("username")
+  def email             = column[Option[String]]("email")
+  def encryptedPassword = column[Option[String]]("encrypted_password")
+  def confirmationToken = column[Option[String]]("confirmation_token")
+  def rememberToken     = column[Option[String]]("remember_token")
+  def firstName         = column[Option[String]]("first_name")
+  def lastName          = column[Option[String]]("last_name")
+
+  def * = (id, createdAt, updatedAt, username, email, encryptedPassword, confirmationToken, rememberToken, firstName, lastName)
 }
 
 object UserTable {
