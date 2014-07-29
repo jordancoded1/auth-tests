@@ -1,0 +1,10 @@
+@(signup_form: Form[UserSignup])(implicit request: RequestHeader)
+@main("Signup form") {
+    @helper.form(action=routes.Users.signup) {
+        @helper.inputText(signup_form("username"))
+        @helper.inputText(signup_form("email"))
+        @helper.inputPassword(signup_form("password"))
+        @helper.inputPassword(signup_form("confirm_password"))
+        <div><input type="submit" value="Signup" /></div>
+    }
+}

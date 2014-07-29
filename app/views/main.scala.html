@@ -11,6 +11,8 @@
     </head>
     <body>
         Welcome - @request.session.get("user")
+        <div><a href="/users/login">Login</a></div>
+        <div><a href="/users/logout">Logout</a></div>
         @content
     </body>
 </html>

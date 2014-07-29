@@ -1,26 +1,26 @@
 package models
 
+import models.data_source.Users._
+
 case class UserLogin(username: String,
-                     password: String
-                      )
+                     password: String)
 
-case class User(user_id: Int,
+case class UserSignup(username: String,
+                      email: String,
+                      password: String,
+                      confirm_password: String)
+
+case class User(id: Int,
+                created_at: String,
+                updated_at: String,
                 username: String,
-                email : String,
-                password: String
-                 )
+                email: String,
+                encrypted_password: String,
+                confirmation_token: String,
+                remember_token: String,
+                first_name: String,
+                last_name: String)
 
-object User
-{
-  //Temporary serves as user data source
-  val users = List(
-    User(1, "ricky", "ricky@abc.com", "password1"),
-    User(2, "bobby", "bobby@abc.com", "password2"),
-    User(3, "jacky", "jacky@abc.com", "password3"),
-    User(4, "roger", "roger@abc.com", "password4"),
-    User(5, "steve", "steve@abc.com", "password5")
-  )
-
-  def find_all = users
-  def find_by_username_password(username: String, password: String): Option[User] = users.find((u: User) => u.username == username && u.password == password)
+object User extends UserData {
+  def find_by_username_password(username: String, password: String): Option[User] = None /*users.find((u: User) => u.username == username && u.password == password)*/
 }
