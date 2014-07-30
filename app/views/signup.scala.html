@@ -1,6 +1,15 @@
 @(signup_form: Form[UserSignup])(implicit request: RequestHeader)
 @main("Signup form") {
-    @helper.form(action=routes.Users.signup) {
+
+    @if(signup_form.hasGlobalErrors) {
+        <ul>
+            @for(error <- signup_form.globalErrors) {
+                <li>@error.message</li>
+            }
+        </ul>
+    }
+
+    @helper.form(action=routes.Users.signupProcess) {
         @helper.inputText(signup_form("username"))
         @helper.inputText(signup_form("email"))
         @helper.inputPassword(signup_form("password"))

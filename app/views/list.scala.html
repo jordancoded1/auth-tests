@@ -1,4 +1,4 @@
-@(users: List[User])(implicit request: RequestHeader)
+@(users: List[UserMain])(implicit request: RequestHeader)
 
 @main("Users listing") {
     <table>
@@ -6,7 +6,6 @@
             <tr>
                 <td>UserID</td>
                 <td>Username</td>
-                <td>Password</td>
             </tr>
         </thead>
         <tbody>

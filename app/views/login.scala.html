@@ -1,6 +1,6 @@
 @(login_form: Form[UserLogin])(implicit request: RequestHeader)
 @main("Login form") {
-    @helper.form(action=routes.Users.login) {
+    @helper.form(action=routes.Users.loginProcess) {
         @helper.inputText(login_form("username"))
         @helper.inputPassword(login_form("password"))
         <div><input type="submit" value="Login" /></div>

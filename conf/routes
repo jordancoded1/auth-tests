@@ -6,11 +6,11 @@
 GET     /                           controllers.Application.index
 GET     /users                      controllers.Users.list
 
-POST    /users/login                controllers.Users.login
 GET     /users/login                controllers.Users.login
+POST    /users/loginProcess         controllers.Users.loginProcess
 GET     /users/logout               controllers.Users.logout
-POST    /users/signup               controllers.Users.signup
 GET     /users/signup               controllers.Users.signup
+POST    /users/signupProcess        controllers.Users.signupProcess
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

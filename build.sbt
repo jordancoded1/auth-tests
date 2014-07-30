@@ -9,6 +9,7 @@ scalaVersion := "2.11.1"
 val mysql = "mysql" % "mysql-connector-java" % "5.1.21"
 val slick = "com.typesafe.slick" %% "slick" % "2.1.0-RC3"
 val slf4j = "org.slf4j" % "slf4j-nop" % "1.6.4"
+val jbcrypt = "org.mindrot" % "jbcrypt" % "0.3m"
 
 libraryDependencies ++= Seq(
   jdbc,
@@ -17,5 +18,6 @@ libraryDependencies ++= Seq(
   ws,
   mysql,
   slick,
-  slf4j
+  slf4j,
+  jbcrypt
 )
