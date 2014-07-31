@@ -11,7 +11,7 @@ val slick   = "com.typesafe.slick" %% "slick" % "2.1.0-RC3"
 val slf4j   = "org.slf4j" % "slf4j-nop" % "1.6.4"
 val jbcrypt = "org.mindrot" % "jbcrypt" % "0.3m"
 
-// webjars lib for Twitter bootstrap - Remove these if we need to use Foundation instead
+//webjars for twitter bootstrap
 val webjars_play = "org.webjars" %% "webjars-play" % "2.3.0"
 val webjars_boot = "org.webjars" % "bootstrap" % "3.1.1-2"
 

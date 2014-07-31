@@ -7,7 +7,6 @@ import models._
 
 object Users extends Controller
 {
-
   implicit def sessioned_user(implicit request: RequestHeader): Option[String] = {
     request.session.get("user")
   }

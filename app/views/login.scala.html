@@ -2,8 +2,8 @@
 @main("Login form") {
     @flash.get("message").getOrElse("")
     @helper.form(action=routes.Users.loginProcess) {
-        @helper.inputText(login_form("username"))
-        @helper.inputPassword(login_form("password"))
+        @helper.inputText(login_form("username"), '_label -> "Username")
+        @helper.inputPassword(login_form("password"), '_label -> "Password")
         <div><input type="submit" value="Login" /></div>
     }
 }
