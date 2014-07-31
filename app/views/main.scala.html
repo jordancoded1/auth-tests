@@ -1,18 +1,26 @@
-@(title: String)(content: Html)(implicit request: RequestHeader)
+@(title: String)(content: Html)(implicit sessioned_user: Option[String], flash: Flash)
 
 <!DOCTYPE html>
-
 <html>
     <head>
-        <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("javascripts/hello.js")" type="text/javascript"></script>
+        <title>Mechanic - @title</title>
+        <!-- <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'> -->
+        <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
+        <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))'>
+        <!-- <script src="@routes.Assets.at("javascripts/hello.js")" type="text/javascript"></script>-->
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
     </head>
     <body>
-        Welcome - @request.session.get("user")
-        <div><a href="/users/login">Login</a></div>
-        <div><a href="/users/logout">Logout</a></div>
+        <h4>Mechanic fm</h4>
+        <div>
+            @if(sessioned_user.isEmpty) {
+                <a href="@routes.Users.login">Login</a>
+                <a href="@routes.Users.signup">Signup</a>
+            } else {
+                <span class="welcome">Welcome @sessioned_user.getOrElse("")</span> |
+                <a href="@routes.Users.logout">Logout</a>
+            }
+        </div>
         @content
     </body>
 </html>

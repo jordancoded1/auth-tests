@@ -1,5 +1,6 @@
-@(login_form: Form[UserLogin])(implicit request: RequestHeader)
+@(login_form: Form[UserLogin])(implicit sessioned_user: Option[String], flash: Flash)
 @main("Login form") {
+    @flash.get("message").getOrElse("")
     @helper.form(action=routes.Users.loginProcess) {
         @helper.inputText(login_form("username"))
         @helper.inputPassword(login_form("password"))

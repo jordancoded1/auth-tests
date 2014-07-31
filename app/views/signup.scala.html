@@ -1,5 +1,5 @@
-@(signup_form: Form[UserSignup])(implicit request: RequestHeader)
-@main("Signup form") {
+@(signup_form: Form[UserSignup])(implicit sessioned_user: Option[String], flash: Flash)
+@main("Signup User") {
 
     @if(signup_form.hasGlobalErrors) {
         <ul>

@@ -1,4 +1,4 @@
-@(users: List[UserMain])(implicit request: RequestHeader)
+@(users: List[UserMain])(implicit sessioned_user: Option[String], flash: Flash)
 
 @main("Users listing") {
     <table>

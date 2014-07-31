@@ -24,12 +24,10 @@ case class UserMain(id: Option[Int],
                 firstName: Option[String],
                 lastName: Option[String])
 
-object User extends UserData
-{
-  def signup(username: String, email: String, password: String): Option[Int] =
-  {
-    val timestamp = new Timestamp(Platform.currentTime)
+object User extends UserData {
 
+  def signup(username: String, email: String, password: String): Option[Int] = {
+    val timestamp = new Timestamp(Platform.currentTime)
     this.insert(
       UserMain(Some(0),
         Some(timestamp.toString()),
@@ -44,8 +42,7 @@ object User extends UserData
     )
   }
 
-  def authenticate(username: String, password: String): Option[UserMain] =
-  {
+  def authenticate(username: String, password: String): Option[UserMain] = {
     val user = this.get_by_username(username)
     user match {
       case Some(u) => if ( BCrypt.checkpw(password, u.encryptedPassword.getOrElse("")) ) user else None
